@@ -1,0 +1,6 @@
+{
+	"TodoDir": "$HOME/Projects/todo.txt-cli",
+	"TodoFile": "todo.txt",
+	"DoneFile": "done.txt",
+	"ReportFile": "$HOME/.local/state/todo/report.txt"
+}
