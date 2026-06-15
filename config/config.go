@@ -7,6 +7,7 @@ import (
 )
 
 type Config struct {
+	CfgPath    string
 	TodoDir    string
 	TodoFile   string
 	DoneFile   string

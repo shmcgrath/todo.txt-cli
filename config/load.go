@@ -19,5 +19,7 @@ func Load(configPath string) (*Config, error) {
 		return nil, err
 	}
 
+	cfg.CfgPath = configPath
+
 	return &cfg, nil
 }
