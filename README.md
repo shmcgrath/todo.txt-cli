@@ -14,7 +14,7 @@
 *Read our [contributing guide][CONTRIBUTING] if you're looking to contribute (issues/PRs/etc).*
 
 ## Go Conversion Explanation
-I want to learn go, so I decided to convert todo.sh to Go. This felt like a decent beginner project.
+I want to learn Go, so I decided to convert todo.sh to Go. This felt like a decent beginner project.
 
 At this time, I'm not sure if I will support an actions directory. This project is intended for an audience of one (me). If I want something new, I would probably just add it in with Go. If this isn't a whole lot of work, I may do it to maintain feature parity.
 
@@ -327,7 +327,8 @@ Both `key` and `value` must consist of non-whitespace characters, which are not 
 - Add flags for some configs
 - fix the default directory to point to ~/.config or $TODO_DIR env
 - in args make it so that it isn't by string because wow would quoting be frustrating
-
+- set defaults to all config values -- should there be a config check?
+- add help to run? and add the help string to the like cmd list thing?
 TODO_DIR
 TODO_FILE
 DONE_FILE
@@ -337,117 +338,12 @@ CONFIG:
 
 INBOX_FILE?
 
-### Original Config file
-```
-# === EDIT FILE LOCATIONS BELOW ===
+## Conversion to Go Reference
+- [go-doc](https://www.nathanrockhold.com/posts/go-godoc/)
+- [go-doc official](https://go.dev/doc/comment)
 
-# Your todo.txt directory (this should be an absolute path)
-#export TODO_DIR="/Users/gina/Documents/todo"
-export TODO_DIR=${HOME:-$USERPROFILE}
-
-# Your todo/done/report.txt locations
-export TODO_FILE="$TODO_DIR/todo.txt"
-export DONE_FILE="$TODO_DIR/done.txt"
-export REPORT_FILE="$TODO_DIR/report.txt"
-
-# You can customize your actions directory location
-#export TODO_ACTIONS_DIR="$HOME/.todo.actions.d"
-
-# == EDIT FILE LOCATIONS ABOVE ===
-
-# === COLOR MAP ===
-
-## Text coloring and formatting is done by inserting ANSI escape codes.
-## If you have re-mapped your color codes, or use the todo.txt
-## output in another output system (like Conky), you may need to
-## over-ride by uncommenting and editing these defaults.
-## If you change any of these here, you also need to uncomment
-## the defaults in the COLORS section below. Otherwise, todo.txt
-## will still use the defaults!
-
-# export BLACK='\\033[0;30m'
-# export RED='\\033[0;31m'
-# export GREEN='\\033[0;32m'
-# export BROWN='\\033[0;33m'
-# export BLUE='\\033[0;34m'
-# export PURPLE='\\033[0;35m'
-# export CYAN='\\033[0;36m'
-# export LIGHT_GREY='\\033[0;37m'
-# export DARK_GREY='\\033[1;30m'
-# export LIGHT_RED='\\033[1;31m'
-# export LIGHT_GREEN='\\033[1;32m'
-# export YELLOW='\\033[1;33m'
-# export LIGHT_BLUE='\\033[1;34m'
-# export LIGHT_PURPLE='\\033[1;35m'
-# export LIGHT_CYAN='\\033[1;36m'
-# export WHITE='\\033[1;37m'
-# export DEFAULT='\\033[0m'
-
-# === COLORS ===
-
-## Uncomment and edit to override these defaults.
-## Reference the constants from the color map above,
-## or use $NONE to disable highlighting.
-#
-# Priorities can be any upper-case letter.
-# A,B,C are highlighted; you can add coloring for more.
-#
-# export PRI_A=$YELLOW        # color for A priority
-# export PRI_B=$GREEN         # color for B priority
-# export PRI_C=$LIGHT_BLUE    # color for C priority
-# export PRI_D=...            # define your own
-# export PRI_X=$WHITE         # color unless explicitly defined
-
-# There is highlighting for tasks that have been done,
-# but haven't been archived yet.
-#
-# export COLOR_DONE=$LIGHT_GREY
-
-# There is highlighting for projects, contexts, dates, and item numbers.
-#
-# export COLOR_PROJECT=$RED
-# export COLOR_CONTEXT=$RED
-# export COLOR_DATE=$BLUE
-# export COLOR_NUMBER=$LIGHT_GREY
-
-# There is highlighting for metadata key:value pairs e.g.
-# DUE:2006-08-01 or note:MYNOTE
-#
-# export COLOR_META=$CYAN
-
-# === BEHAVIOR ===
-
-## verbosity
-#
-# By default, additional information and confirmation of actions (like
-# "TODO: 1 added") are printed. You can suppress this via 0 or add extra
-# verbosity via 2.
-# export TODOTXT_VERBOSE=1
-
-## customize list output
-#
-# TODOTXT_SORT_COMMAND will filter after line numbers are
-# inserted, but before colorization, and before hiding of
-# priority, context, and project.
-#
-# export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -f -k2'
-
-# TODOTXT_FINAL_FILTER will filter list output after colorization,
-# priority hiding, context hiding, and project hiding. That is,
-# just before the list output is displayed.
-#
-# export TODOTXT_FINAL_FILTER='cat'
-
-## default actions
-# Set a default action for calling todo.sh without arguments.
-# Also allows for parameters for the action.
-# export TODOTXT_DEFAULT_ACTION=''
-
-
-{
-	"TODO_DIR": "$HOME/Projects/todo.txt-cli",
-	"TODO_FILE": "$TODO_DIR/todo.txt",
-	"DONE_FILE": "$TODO_DIR/done.txt",
-	"REPORT_FILE": "$HOME/.local/state/todo/report.txt"
-}
-```
+### Planned Config
+"TODO_DIR": "$HOME/Projects/todo.txt-cli",
+"TODO_FILE": "$TODO_DIR/todo.txt",
+"DONE_FILE": "$TODO_DIR/done.txt",
+"REPORT_FILE": "$HOME/.local/state/todo/report.txt"
